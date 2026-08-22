@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Jinny Coffee — Setup & Fix Notes
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What I added/fixed
 
-## Available Scripts
+1. **`src/App.js` and `src/index.js` were missing.** These are the files that
+   actually wire your pages and Navbar/Footer together with routing. Without
+   them, nothing was "connected."
+2. **`/admin` was public.** Anyone who typed the URL could add, edit, or
+   delete your products. I added:
+   - `src/context/AuthContext.js` — tracks whether someone is logged in,
+     and whether they're an admin.
+   - `src/components/PrivateRoute.js` — blocks the Admin page unless the
+     logged-in user's email is in the `ADMIN_EMAILS` list.
+   - **You must edit `ADMIN_EMAILS` in `src/context/AuthContext.js`** and put
+     your real email there (the same one you'll register/login with).
+3. **Navbar now reflects real login state** — it shows "Logout" when you're
+   signed in, and only shows the "Admin" link to admins.
 
-In the project directory, you can run:
+## Folder structure expected
 
-### `npm start`
+```
+src/
+  App.js
+  App.css
+  index.js
+  index.css
+  firebase.js
+  context/
+    AuthContext.js
+  components/
+    Navbar.js / Navbar.css
+    Footer.js / Footer.css
+    PrivateRoute.js
+  pages/
+    Home.js / Home.css
+    About.js / About.css
+    Services.js / Services.css
+    Contact.js / Contact.css
+    Login.js / Register.js / Auth.css
+    Admin.js / Admin.css
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+If your existing project used a flat `src/` (no `pages`/`components`
+subfolders), either move files into these folders, or update the `import`
+paths in `App.js` and `Navbar.js` to match your layout.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Install & run
 
-### `npm test`
+```bash
+npm install
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## IMPORTANT — also lock down Firestore itself
 
-### `npm run build`
+Right now, even with the Admin *page* protected, anyone who opens your
+browser dev tools could still call Firestore directly and write to the
+`products` collection, because your **Firestore security rules** are
+probably still in the default "open" test mode.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Go to Firebase Console → Firestore Database → Rules, and use something like:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if request.auth != null &&
+        request.auth.token.email in ['admin@jinnycoffee.com'];
+    }
+  }
+}
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+(Match the email to what you set in `ADMIN_EMAILS`.) This is the real,
+server-enforced lock — the React-side `PrivateRoute` is just a good UX layer
+on top of it, not a substitute for it.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Other small things worth knowing
+- Your Firebase config values (`apiKey`, etc.) in `firebase.js` are safe to
+  keep in the code — Firebase client config is meant to be public. Your real
+  protection is the Firestore security rules above.
+- To create your first admin account: run the app, go to `/register`, sign up
+  with the email you put in `ADMIN_EMAILS`, then log in — the Admin link will
+  appear in the navbar.

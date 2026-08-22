@@ -1,0 +1,336 @@
+.track-page {
+  min-height: 100vh;
+  background: #f8f4ef;
+  padding: 60px 20px 90px;
+}
+
+.track-container {
+  width: min(800px, 100%);
+  margin: 0 auto;
+}
+
+.track-header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.track-kicker {
+  margin: 0 0 8px;
+  color: #b06b2d;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.track-header h1 {
+  margin: 0;
+  color: #4a2e18;
+  font-size: 42px;
+}
+
+.track-header p {
+  color: #7a6a5c;
+}
+
+.track-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0 12px 35px rgba(74, 46, 24, 0.08);
+}
+
+.loading-card {
+  text-align: center;
+}
+
+.track-icon {
+  font-size: 55px;
+  margin-bottom: 10px;
+}
+
+.track-order-id {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #eadfd3;
+}
+
+.track-order-id span {
+  color: #9b8b7a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.track-order-id strong {
+  color: #4a2e18;
+  font-size: 18px;
+}
+
+.current-status {
+  margin: 20px 0;
+  padding: 13px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.current-status.pending {
+  background: #fff3cd;
+  color: #9a6700;
+}
+
+.current-status.accepted {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.current-status.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.current-status.cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+
+/* Timeline */
+
+.order-timeline {
+  margin: 25px 0 35px;
+}
+
+.timeline-step {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding-bottom: 28px;
+}
+
+.timeline-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: 38px;
+  width: 2px;
+  height: calc(100% - 12px);
+  background: #e5d8ca;
+}
+
+.timeline-step.completed:not(:last-child)::after {
+  background: #6b4423;
+}
+
+.timeline-marker {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #eee4d8;
+  color: #8b7b6c;
+  font-weight: 800;
+  z-index: 1;
+}
+
+.timeline-step.completed .timeline-marker {
+  background: #6b4423;
+  color: white;
+}
+
+.timeline-content h3 {
+  margin: 4px 0 5px;
+  color: #4a2e18;
+  font-size: 17px;
+}
+
+.timeline-content p {
+  margin: 0;
+  color: #7a6a5c;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* Customer Info */
+
+.track-info {
+  margin-top: 10px;
+  padding: 22px 0;
+  border-top: 1px solid #eadfd3;
+  border-bottom: 1px solid #eadfd3;
+}
+
+.track-info h3,
+.track-items h3 {
+  margin: 0 0 18px;
+  color: #4a2e18;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 8px 0;
+}
+
+.info-row span {
+  color: #7a6a5c;
+}
+
+.info-row strong {
+  color: #4a2e18;
+  text-align: right;
+}
+
+
+/* Items */
+
+.track-items {
+  padding: 22px 0;
+}
+
+.track-item {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed #eadfd3;
+}
+
+.track-item:last-child {
+  border-bottom: none;
+}
+
+.track-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.track-item h4 {
+  margin: 0 0 5px;
+  color: #4a2e18;
+}
+
+.track-item p {
+  margin: 0;
+  color: #7a6a5c;
+  font-size: 13px;
+}
+
+.track-item > strong {
+  color: #b86622;
+}
+
+
+/* Total */
+
+.track-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-top: 2px solid #e5d3b3;
+}
+
+.track-total span {
+  color: #4a2e18;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.track-total strong {
+  color: #b86622;
+  font-size: 24px;
+}
+
+
+/* Buttons */
+
+.track-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.track-main-btn,
+.track-secondary-btn {
+  flex: 1;
+  padding: 13px;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.track-main-btn {
+  background: #6b4423;
+  color: white;
+}
+
+.track-secondary-btn {
+  background: #eee4d8;
+  color: #6b4423;
+}
+
+
+/* Cancelled */
+
+.cancelled-message {
+  margin: 25px 0;
+  padding: 35px 20px;
+  border-radius: 15px;
+  background: #fff5f5;
+  text-align: center;
+}
+
+.cancelled-icon {
+  font-size: 45px;
+}
+
+.cancelled-message h2 {
+  color: #b91c1c;
+}
+
+.cancelled-message p {
+  color: #7a6a5c;
+}
+
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .track-page {
+    padding: 40px 15px 70px;
+  }
+
+  .track-card {
+    padding: 22px;
+  }
+
+  .track-header h1 {
+    font-size: 34px;
+  }
+
+  .track-order-id,
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .info-row strong {
+    text-align: left;
+  }
+
+  .track-buttons {
+    flex-direction: column;
+  }
+}

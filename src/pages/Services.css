@@ -1,0 +1,297 @@
+/* =========================
+   Jinny Coffee Menu
+========================= */
+
+.services-page {
+  min-height: 100vh;
+  background: #f8f4ef;
+}
+
+.services-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 70px 0 90px;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.menu-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 55px;
+}
+
+.menu-kicker {
+  margin-bottom: 10px;
+
+  color: #b06b2d;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+.services-container h2 {
+  margin: 0;
+
+  color: #4a2e18;
+
+  font-size: 50px;
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+.menu-subtitle {
+  margin-top: 18px;
+  margin-bottom: 10px;
+
+  color: #6b4423;
+
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.menu-description {
+  color: #7a6a5c;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================
+   Coffee Grid
+========================= */
+
+.product-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 30px;
+}
+
+
+/* =========================
+   Coffee Card
+========================= */
+
+.product-card {
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border-radius: 20px;
+
+  border: 1px solid #eadfd3;
+
+  box-shadow:
+    0 8px 25px rgba(74, 46, 24, 0.08);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 18px 35px rgba(74, 46, 24, 0.15);
+}
+
+
+/* =========================
+   Image
+========================= */
+
+.product-image-wrap {
+  position: relative;
+
+  width: 100%;
+  height: 260px;
+
+  overflow: hidden;
+
+  background: #eee4d8;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+  transform: scale(1.06);
+}
+
+
+/* =========================
+   Badge
+========================= */
+
+.coffee-badge {
+  position: absolute;
+
+  top: 15px;
+  left: 15px;
+
+  padding: 7px 12px;
+
+  border-radius: 50px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  color: #6b4423;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================
+   Content
+========================= */
+
+.product-content {
+  padding: 22px;
+}
+
+.product-content h3 {
+  margin: 0 0 10px;
+
+  color: #4a2e18;
+
+  font-size: 22px;
+}
+
+.product-description {
+  min-height: 48px;
+
+  margin-bottom: 20px;
+
+  color: #74685f;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================
+   Bottom
+========================= */
+
+.product-bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+
+/* =========================
+   Price
+========================= */
+
+.price {
+  color: #b86622;
+
+  font-size: 22px;
+
+  font-weight: 800;
+}
+
+
+/* =========================
+   Order Button
+========================= */
+
+.order-btn {
+  border: none;
+
+  padding: 11px 18px;
+
+  border-radius: 10px;
+
+  background: #6b4423;
+
+  color: white;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.order-btn:hover {
+  background: #4a2e18;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 950px) {
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 650px) {
+
+  .services-container {
+    padding: 50px 0 70px;
+  }
+
+  .services-container h2 {
+    font-size: 38px;
+  }
+
+  .menu-subtitle {
+    font-size: 17px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-image-wrap {
+    height: 250px;
+  }
+
+}
