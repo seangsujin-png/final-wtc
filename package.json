@@ -2,6 +2,7 @@
   "name": "jinny-coffee",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://seangsujin-png.github.io/final-wtc",
   "dependencies": {
     "firebase": "^10.14.1",
     "react": "^18.2.0",
