@@ -1,75 +1,244 @@
+/* =========================
+   Navbar
+========================= */
+
 .navbar {
-  background: #2c3e50;
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  width: 100%;
+  background: #2f4356;
+  color: white;
 }
 
 .nav-container {
-  max-width: 1200px;
+  width: min(1100px, 92%);
+  min-height: 95px;
+
   margin: 0 auto;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  justify-content: space-between;
+
+  position: relative;
 }
+
+
+/* =========================
+   Logo
+========================= */
 
 .nav-logo {
   color: white;
-  font-size: 1.8rem;
-  font-weight: bold;
   text-decoration: none;
+
+  font-size: 34px;
+  font-weight: 800;
+
+  white-space: nowrap;
 }
+
+
+/* =========================
+   Menu
+========================= */
 
 .nav-menu {
   display: flex;
-  list-style: none;
-  gap: 2rem;
-}
+  align-items: center;
 
-.nav-menu a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.3s;
-}
+  gap: 30px;
 
-.nav-menu a:hover {
-  color: #3498db;
-}
-
-.nav-logout-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.1rem;
-  font-family: inherit;
-  cursor: pointer;
+  margin: 0;
   padding: 0;
-  transition: color 0.3s;
+
+  list-style: none;
 }
 
-.nav-logout-btn:hover {
-  color: #3498db;
+.nav-menu li {
+  display: flex;
+  align-items: center;
 }
+
+.nav-menu a,
+.auth-link {
+  color: white;
+
+  text-decoration: none;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  transition: opacity 0.2s ease;
+}
+
+.nav-menu a:hover,
+.auth-link:hover {
+  opacity: 0.75;
+}
+
+
+/* =========================
+   Cart Count
+========================= */
 
 .cart-count {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
   min-width: 20px;
   height: 20px;
 
-  margin-left: 6px;
+  margin-left: 5px;
+
   padding: 0 5px;
 
   border-radius: 50%;
 
-  background: #b86622;
+  background: #c8752b;
   color: white;
 
   font-size: 11px;
   font-weight: 800;
+}
+
+
+/* =========================
+   Logout
+========================= */
+
+.nav-logout-btn {
+  border: none;
+  background: none;
+
+  color: white;
+
+  cursor: pointer;
+
+  padding: 0;
+}
+
+
+/* =========================
+   Mobile Toggle
+========================= */
+
+.menu-toggle {
+  display: none;
+
+  border: none;
+  background: transparent;
+
+  color: white;
+
+  font-size: 32px;
+
+  cursor: pointer;
+
+  padding: 5px;
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+
+  .nav-menu {
+    gap: 20px;
+  }
+
+  .nav-menu a,
+  .auth-link {
+    font-size: 16px;
+  }
+
+  .nav-logo {
+    font-size: 30px;
+  }
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 700px) {
+
+  .nav-container {
+    min-height: 75px;
+  }
+
+  .nav-logo {
+    font-size: 27px;
+  }
+
+  /* Show hamburger */
+  .menu-toggle {
+    display: block;
+
+    order: 2;
+  }
+
+  /* Hide menu by default */
+  .nav-menu {
+    display: none;
+
+    position: absolute;
+
+    top: 75px;
+    left: 0;
+    right: 0;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 0;
+
+    padding: 10px 0;
+
+    background: #2f4356;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.15);
+
+    z-index: 999;
+  }
+
+  /* Show when hamburger clicked */
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .nav-menu li {
+    width: 100%;
+  }
+
+  .nav-menu a,
+  .auth-link {
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 15px 22px;
+
+    font-size: 17px;
+  }
+
+  .nav-menu a:hover,
+  .auth-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    opacity: 1;
+  }
+
+  .nav-logout-btn {
+    text-align: left;
+  }
 }
